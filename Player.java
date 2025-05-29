@@ -8,6 +8,9 @@ public class Player {
     private Scanner scanner = new Scanner(System.in);
     private Game game = new Game();
     public  Player(ArrayList<String> initial_hand){
+
+
+
        
     }
     public String getHand(){
