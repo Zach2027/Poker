@@ -11,14 +11,24 @@ public class Main {
     public static void main(String[] args) {
         
         System.out.print(" Welcome to pass and play poker! How may players will be playing today?");
-        String numPlayers = sc.nextLine();
+        String strNumPlayers =  sc.nextLine();
+        int numPlayers = strNumPlayers.length();
+        Player [] playerList = new Player[numPlayers];
+        for (int i = 1; i <= numPlayers; i++){
             
-        for (int i = 0; i < numPlayers; i++){
+            System.out.println("What is the name of player" + i + "?");
+            String theName = sc.nextLine();
+
+            playerList[i] = new Player(theName);
+
+        } 
+
+        for (int i = 0; i < playerList.length; i++){
 
 
 
 
-        }   
+        }
             
     }
 }
