@@ -7,6 +7,7 @@ public class Player {
     private String name;
     private int minBet =0;
     private Boolean isInHand = true;
+    private static Deck deck = new Deck();
      public Player(String n){
 
         name = n;    }
@@ -15,7 +16,11 @@ public class Player {
     private Game game = new Game();
     
     public String showHand(){
-        return hand.get(1) + hand.get(0);
+        return hand.get(1) + " " + hand.get(0);
+    }
+
+    public String getName(){
+        return name;
     }
     public int playerBet(){
         System.out.println("How much do you want to bet");
@@ -33,11 +38,10 @@ public class Player {
             }
         return money;
     }
-
-    public void dealFirstHand(){
-        
+    public void dealHand(){
         hand.add(deck.getCard());
         hand.add(deck.getCard());
-        
     }
+
+
 }

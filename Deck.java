@@ -3,8 +3,8 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class Deck {
-
-    public ArrayList<String> deck = new ArrayList<>(Arrays.asList(
+    private ArrayList<String> communityCards = new ArrayList<>();
+    public static ArrayList<String> deck = new ArrayList<>(Arrays.asList(
             "2 of Hearts", "3 of Hearts", "4 of Hearts", "5 of Hearts", "6 of Hearts",
             "7 of Hearts", "8 of Hearts", "9 of Hearts", "10 of Hearts",
             "Jack of Hearts", "Queen of Hearts", "King of Hearts", "Ace of Hearts",
@@ -27,8 +27,8 @@ public class Deck {
         deck.remove(i);
         return s;
     }
-
-    public ArrayList<String> getDeck() {
+    
+    public static ArrayList<String> getDeck(){
         return deck;
     }
 
@@ -50,5 +50,22 @@ public class Deck {
                 "7 of Spades", "8 of Spades", "9 of Spades", "10 of Spades",
                 "Jack of Spades", "Queen of Spades", "King of Spades", "Ace of Spades"));
         Collections.shuffle(deck);
+    }
+    public void dealFlop(Deck deck) {
+        communityCards.clear(); 
+        communityCards.add(deck.getCard());
+        communityCards.add(deck.getCard());
+        communityCards.add(deck.getCard());
+    }
+    
+    public void dealTurn(Deck deck) {
+        communityCards.add(deck.getCard());
+    }
+    
+    public void dealRiver(Deck deck) {
+        communityCards.add(deck.getCard());
+    }
+    public ArrayList<String> getCommunityCards() {
+        return communityCards;
     }
 }
