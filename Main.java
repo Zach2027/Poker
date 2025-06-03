@@ -2,33 +2,28 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
+    static int turn = 1; 
 
     public static void clearScreen() {
-        System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
     public static void main(String[] args) {
-        
+
         System.out.print(" Welcome to pass and play poker! How may players will be playing today?");
-        String strNumPlayers =  sc.nextLine();
-        int numPlayers = strNumPlayers.length();
-        Player [] playerList = new Player[numPlayers];
-        for (int i = 1; i <= numPlayers; i++){
-            
-            System.out.println("What is the name of player" + i + "?");
+        String strNumPlayers = sc.nextLine();
+        int numPlayers = Integer.parseInt(strNumPlayers);
+        Player[] playerList = new Player[numPlayers];
+        for (int i = 0; i < playerList.length; i++) {
+
+            System.out.println("What is the name of player" + (i+1) + "?");
             String theName = sc.nextLine();
 
             playerList[i] = new Player(theName);
 
-        } 
-
-        for (int i = 0; i < playerList.length; i++){
-
-
-
-
         }
-            
+
+        System.out.println("Each player has 100 dollars in chips (There will be no blinds just an ante)");
+        }
+    
     }
-}

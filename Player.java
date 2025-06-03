@@ -5,7 +5,8 @@ public class Player {
     private int money = 100;
     private ArrayList<String> hand = new ArrayList<String>();
     private String name;
-
+    private int minBet =0;
+    private Boolean isInHand = true; 
      public Player(String n){
 
         name = n;    }
@@ -20,15 +21,18 @@ public class Player {
         return hand.get(1) + hand.get(0);
     }
     public int playerBet(){
-        System.out.println("How much do you want to print");
+        System.out.println("How much do you want to bet");
         int bet = scanner.nextInt();
-            if (money-bet>=0)
+            if (money-bet>=0 && bet >= minBet)
             {
                 money -= bet;
                 game.updatePot(bet);
+                minBet = bet;
             }
-            else {
-                return money;
+            else if(money-bet <= 0 ){
+                System.out.print("You're all in!!");
+                money = 0;
+                game.updatePot(money);
             }
         return money;
     }
