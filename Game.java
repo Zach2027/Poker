@@ -12,5 +12,6 @@ public class Game {
         
         initial_hand.add(deck.getCard());
         initial_hand.add(deck.getCard());
+        
     }
 }

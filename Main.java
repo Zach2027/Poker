@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.print(" Welcome to pass and play poker! How may players will be playing today?");
-        String strNumPlayers = sc.nextLine();
+        String strNumPlayes = sc.nextLine();
         int numPlayers = Integer.parseInt(strNumPlayers);
         Player[] playerList = new Player[numPlayers];
         for (int i = 0; i < playerList.length; i++) {
@@ -23,7 +23,15 @@ public class Main {
 
         }
 
-        System.out.println("Each player has 100 dollars in chips (There will be no blinds just an ante)");
+            System.out.println("Each player has 100 dollars in chips (There will be no blinds just an ante)");
+            System.out.println("Your hand is now going to be dealed to you.");
+
+            for (int i = 0; i < playerList.length; i++){
+
+                playerList[i].dealFirstHand();
+                
+
+            }
         }
     
     }

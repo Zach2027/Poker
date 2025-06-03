@@ -6,18 +6,15 @@ public class Player {
     private ArrayList<String> hand = new ArrayList<String>();
     private String name;
     private int minBet =0;
-    private Boolean isInHand = true; 
+    private Boolean isInHand = true;
      public Player(String n){
 
         name = n;    }
     
     private Scanner scanner = new Scanner(System.in);
     private Game game = new Game();
-    public  Player(ArrayList<String> initial_hand){
-
-       
-    }
-    public String getHand(){
+    
+    public String showHand(){
         return hand.get(1) + hand.get(0);
     }
     public int playerBet(){
@@ -35,5 +32,12 @@ public class Player {
                 game.updatePot(money);
             }
         return money;
+    }
+
+    public void dealFirstHand(){
+        
+        hand.add(deck.getCard());
+        hand.add(deck.getCard());
+        
     }
 }
