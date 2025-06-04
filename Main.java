@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     static Scanner sc = new Scanner(System.in);
     static int turn = 1; 
-
+    private static int numOfPlayersIn;
     public static void clearScreen() {
         System.out.flush();
     }
@@ -20,9 +20,9 @@ public class Main {
             String theName = sc.nextLine();
 
             playerList[i] = new Player(theName);
-
+            numOfPlayersIn++;
         }
-
+            
             System.out.println("Each player has 100 dollars in chips (There will be no blinds just an ante)");
             System.out.println("Your hand is now going to be dealed to you.");
 
@@ -41,7 +41,9 @@ public class Main {
                 sc.nextLine();
                 clearScreen();
             }
-            
+            while(playerList.length > 1){
+                
+            }
             
 
             

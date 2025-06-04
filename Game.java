@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Game {
-    private int pot = 0;
+    public int pot = 0;
     private static Deck deck = new Deck();
     private  ArrayList<String> initial_hand = new ArrayList<>();
 
