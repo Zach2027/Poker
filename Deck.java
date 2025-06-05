@@ -32,7 +32,7 @@ public class Deck {
         return deck;
     }
 
-    public void shuffleCards() {
+    public static void shuffleCards() {
         deck = new ArrayList<>(Arrays.asList(
                 "2 of Hearts", "3 of Hearts", "4 of Hearts", "5 of Hearts", "6 of Hearts",
                 "7 of Hearts", "8 of Hearts", "9 of Hearts", "10 of Hearts",
@@ -67,5 +67,31 @@ public class Deck {
     }
     public ArrayList<String> getCommunityCards() {
         return communityCards;
+    }
+
+    private String[][] toTwoD(ArrayList<String> d){
+
+        String[][] newVersion = new String[4][13];
+
+        int length = d.size();
+        int index = 0;
+
+        for(int r =0; r < newVersion.length; r++){
+
+            for(int c = 0; c < newVersion[0].length; c++){
+
+                if(index == length){
+                    return newVersion;
+                }
+
+                newVersion[r][c] = d.get(index);
+                index++;
+            }
+        }
+
+        return newVersion;
+
+
+
     }
 }

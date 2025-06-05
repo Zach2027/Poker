@@ -1,64 +1,83 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class Player {
-    
+
     private int money = 100;
     private ArrayList<String> hand = new ArrayList<String>();
     private String name;
-    public int minBet =0;
+    public static int minBet = 0;
     private Boolean isInHand = true;
-    private static Deck deck = new Deck();
-     public Player(String n){
+    public static int numPlayerInTheHand;
+    public static Deck deck = new Deck();
 
-        name = n;    }
-    
+    public Player(String n) {
+
+        name = n;
+    }
+
+    public void changeIsInHand(){
+        isInHand = true;
+    }
+
     private Scanner scanner = new Scanner(System.in);
     private Game game = new Game();
-    
-    public String showHand(){
+
+    public String showHand() {
         return hand.get(1) + " " + hand.get(0);
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
-    public int playerBet(){
-        System.out.print("The pot is " + game.pot + " The current bet is " + minBet);
-        System.out.println("How much do you want to bet(type 0 to fold)");
-        int bet = scanner.nextInt();
-            if (money-bet>=0 && bet >= minBet)
-            {
+
+    public int playerBet() {
+        if (isInHand) {
+            System.out.print("The pot is " + game.pot + " The current bet is " + minBet);
+            System.out.println("How much do you want to bet(type 0 to fold)");
+            int bet = scanner.nextInt();
+            if (money - bet >= 0 && bet >= minBet) {
                 money -= bet;
                 game.updatePot(bet);
                 minBet = bet;
-                System.out.print("You raised it to " + minBet);
-            }
-            else if(money-bet <= 0 ){
-                System.out.print("You're all in!!");
+                System.out.println("You raised it to " + minBet);
+            } else if (money - bet <= 0) {
+                System.out.println("You're all in!!");
                 money = 0;
                 game.updatePot(money);
-            }
-            else if(bet < minBet){
+            } else if (bet < minBet && bet != 0) {
                 System.out.println("You need to call the bet to stay in");
                 playerBet();
-            }
-            else if(bet == 0 && minBet == 0){
-                System.out.print("You check");
-            }
-            else if(bet == 0 && minBet > 0){
+            } else if (bet == 0 && minBet == 0) {
+                System.out.println("You check");
+            } else if (bet == 0 && minBet > 0) {
                 System.out.println("You folded");
                 isInHand = false;
+                numPlayerInTheHand--;
+
             }
-            System.out.print("The amount of chips you have is ");
-            return money;
+            System.out.print("The amount of chips you have is " + money);
+        }
+        return money;
     }
-    public void dealHand(){
+
+    public void dealHand() {
         hand.add(deck.getCard());
         hand.add(deck.getCard());
     }
-    public boolean getIsInHand(){
+
+    public boolean getIsInHand() {
         return isInHand;
 
     }
-
+    public void ante(){
+        money = money - 5;
+        game.updatePot(5);
+    }
+    public void collectPot(){
+        money += Game.pot;
+    }
+    public void setMinBet(){
+        minBet = 0;
+    }
 }
