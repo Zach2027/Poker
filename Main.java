@@ -27,23 +27,24 @@ public class Main {
         }
         while (playerList.length > 1) {
 
-            System.out.println("Each player has 100 dollars in chips (There will be no blinds just an ante)");
+            System.out.println("Each player has 100 dollars in chips (There will be no blinds just an ante of 5) ");
             System.out.println("Your hand is now going to be dealed to you and you will pay the ante");
             numOfPlayersIn = playerList.length;
             while (numOfPlayersIn > 1) {
                 handEnd = true;
+
+                for (int i = 0; i < playerList.length; i++) {
+                    playerList[i].changeIsInHand();
+                }
+                Player.minBet = 0;
+                Deck.shuffleCards();
+                for (int i = 0; i < playerList.length; i++) {
+
+                    playerList[i].dealHand();
+                    playerList[i].ante();
+                }
+                
                 while (handEnd) {
-                    for (int i = 0; i < playerList.length; i++) {
-                        playerList[i].changeIsInHand();
-                    }
-                    Player.minBet = 0;
-                    Deck.shuffleCards();
-                    for (int i = 0; i < playerList.length; i++) {
-
-                        playerList[i].dealHand();
-                        playerList[i].ante();
-                    }
-
                     for (int i = 0; i < playerList.length; i++) {
                         System.out
                                 .println(playerList[i].getName() + ", are you ready to see your cards (press any key)");
@@ -53,22 +54,25 @@ public class Main {
                         System.out.print("press any key to clear");
                         sc.nextLine();
                         clearScreen();
-                        if(!playerList[i].getIsInHand()){
+                        if (!playerList[i].getIsInHand()) {
                             numOfPlayersIn--;
-                        }
-                    }
-                    if (numOfPlayersIn < 2) {
-                        for (int i = 0; i < playerList.length; i++) {
-                            if (playerList[i].getIsInHand()) {
-                                playerList[i].collectPot();
-                            }
-                        }
 
+                        }
                     }
-                    
                 }
+                if (numOfPlayersIn < 2) {
+                    for (int i = 0; i < playerList.length; i++) {
+                        if (playerList[i].getIsInHand()) {
+                            playerList[i].collectPot();
+                        }
+                    }
+
+                }
+
+
             }
         }
+
     }
 
 }

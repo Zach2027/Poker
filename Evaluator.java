@@ -1,7 +1,12 @@
 public class Evaluator{
 
-    private Deck eDeck = new Deck();
-    private String[][] Deck = eDeck.toTwoD();
+    private Deck[][] arrDeck = new Deck[13][4];
+
+    
+   
+   
+    
+    
 
 
 

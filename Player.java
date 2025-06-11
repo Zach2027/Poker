@@ -10,7 +10,7 @@ public class Player {
     private Boolean isInHand = true;
     public static int numPlayerInTheHand;
     public static Deck deck = new Deck();
-
+    public static boolean everyoneChecked = false;
     public Player(String n) {
 
         name = n;
@@ -32,7 +32,8 @@ public class Player {
     }
 
     public int playerBet() {
-        if (isInHand) {
+        
+        if (numPlayerInTheHand > 1 ) {
             System.out.print("The pot is " + game.pot + " The current bet is " + minBet);
             System.out.println("How much do you want to bet(type 0 to fold)");
             int bet = scanner.nextInt();
