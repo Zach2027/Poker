@@ -51,12 +51,7 @@ public class Deck {
                 "Jack of Spades", "Queen of Spades", "King of Spades", "Ace of Spades"));
         Collections.shuffle(deck);
     }
-    public void dealFlop(Deck deck) {
-        communityCards.clear(); 
-        communityCards.add(deck.getCard());
-        communityCards.add(deck.getCard());
-        communityCards.add(deck.getCard());
-    }
+    
     
     public void dealTurn(Deck deck) {
         communityCards.add(deck.getCard());

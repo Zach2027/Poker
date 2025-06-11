@@ -42,10 +42,15 @@ public class Main {
 
                     playerList[i].dealHand();
                     playerList[i].ante();
+                    Player.numPlayerInTheHand++;
                 }
-                
+
                 while (handEnd) {
+
                     for (int i = 0; i < playerList.length; i++) {
+                        if (Player.minBet == playerList[i].getLastBet()) {
+                            break;
+                        }
                         System.out
                                 .println(playerList[i].getName() + ", are you ready to see your cards (press any key)");
                         sc.nextLine();
@@ -59,20 +64,47 @@ public class Main {
 
                         }
                     }
-                }
-                if (numOfPlayersIn < 2) {
-                    for (int i = 0; i < playerList.length; i++) {
-                        if (playerList[i].getIsInHand()) {
-                            playerList[i].collectPot();
+
+                    if (numOfPlayersIn < 2) {
+                        for (int i = 0; i < playerList.length; i++) {
+                            if (playerList[i].getIsInHand()) {
+                                playerList[i].collectPot();
+                            }
                         }
+
                     }
+                    System.out.println("This is the flop (for everyone to see) ");
+                    Player.dealFlop();
 
+                    System.out.println("press enter to continue");
+                    sc.nextLine();
+                    Player.minBet = 0;
+                    
+                    for (int a = 0; a < playerList.length; a++) {
+                        playerList[a].resetLast();
+                    }
+                    for (int q = 0; q < playerList.length; q++) {
+                        if (Player.minBet == playerList[q].getLastBet()) {
+                            
+                        }
+                        
+                        System.out.println(playerList[q].getName() + ", are you ready to see your cards (press any key)");
+                        sc.nextLine();
+                        System.out.println(playerList[q].getName() + " your hand is: " + playerList[q].showHand());
+                        playerList[q].playerBet();
+                        System.out.print("press any key to clear");
+                        sc.nextLine();
+                        clearScreen();
+                        if (!playerList[q].getIsInHand()) {
+                            numOfPlayersIn--;
+
+                        }
+
+                    }
                 }
-
 
             }
+
         }
-
     }
-
 }
