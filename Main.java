@@ -131,6 +131,7 @@ public class Main {
                     }
 
                     Player.dealRiver();
+                    System.out.println("");
                     System.out.println("press enter to continue");
                     sc.nextLine();
                     Player.minBet = -1000;
