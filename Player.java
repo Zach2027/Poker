@@ -12,12 +12,14 @@ public class Player {
     public static int numPlayerInTheHand;
     public static Deck deck = new Deck();
     private int lastBet = -82737;
+    private ArrayList<String> fullHand = new ArrayList<>();
+
     public Player(String n) {
 
         name = n;
     }
 
-    public void changeIsInHand(){
+    public void changeIsInHand() {
         isInHand = true;
     }
 
@@ -33,7 +35,7 @@ public class Player {
     }
 
     public int playerBet() {
-        
+
         if (numPlayerInTheHand > 1 && isInHand) {
             System.out.println("The pot is " + game.pot + " The current bet is " + minBet + ".");
             System.out.println("How much do you want to bet(type 0 to fold)");
@@ -63,7 +65,8 @@ public class Player {
         }
         return money;
     }
-    public int getLastBet(){
+
+    public int getLastBet() {
         return lastBet;
     }
 
@@ -73,16 +76,26 @@ public class Player {
     }
 
     public static void dealFlop() {
-        communityCards.clear(); 
+        communityCards.clear();
         communityCards.add(deck.getCard());
         communityCards.add(deck.getCard());
         communityCards.add(deck.getCard());
 
         System.out.println(communityCards);
-        
+
     }
 
-    public ArrayList<String> getCommunityCards(){
+    public static void dealTurn() {
+        communityCards.add(deck.getCard());
+        System.out.println(communityCards);
+    }
+
+    public static void dealRiver() {
+        communityCards.add(deck.getCard());
+        System.out.println(communityCards);
+    }
+
+    public ArrayList<String> getCommunityCards() {
 
         return communityCards;
     }
@@ -91,17 +104,40 @@ public class Player {
         return isInHand;
 
     }
-    public void ante(){
+
+    public void ante() {
         money = money - 5;
         game.updatePot(5);
     }
-    public void collectPot(){
+
+    public void collectPot() {
         money += Game.pot;
     }
-    public void setMinBet(){
+
+    public void setMinBet() {
         minBet = 0;
     }
-    public void resetLast(){
+
+    public void resetLast() {
         lastBet = 0;
     }
+
+    public void getBestHand() {
+
+    
+
+        fullHand.add(showHand());
+        for (int i = 0; i < communityCards.size(); i++) {
+            fullHand.add(communityCards.get(i));
+        }
+
+        PokerHandEvaluator.evaluateBestHand(fullHand);
+
+    }
+
+    public static ArrayList<String> getDemCards(){
+
+        return communityCards;
+    }
+
 }

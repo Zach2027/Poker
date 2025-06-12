@@ -78,17 +78,19 @@ public class Main {
 
                     System.out.println("press enter to continue");
                     sc.nextLine();
-                    Player.minBet = 0;
-                    
+                    Player.minBet = -1000;
+
                     for (int a = 0; a < playerList.length; a++) {
                         playerList[a].resetLast();
+
                     }
                     for (int q = 0; q < playerList.length; q++) {
                         if (Player.minBet == playerList[q].getLastBet()) {
-                            
+                            break;
                         }
-                        
-                        System.out.println(playerList[q].getName() + ", are you ready to see your cards (press any key)");
+
+                        System.out
+                                .println(playerList[q].getName() + ", are you ready to see your cards (press any key)");
                         sc.nextLine();
                         System.out.println(playerList[q].getName() + " your hand is: " + playerList[q].showHand());
                         playerList[q].playerBet();
@@ -101,10 +103,89 @@ public class Main {
                         }
 
                     }
+                    Player.dealTurn();
+                    System.out.println("press enter to continue");
+                    sc.nextLine();
+                    Player.minBet = -1000;
+                    for (int a = 0; a < playerList.length; a++) {
+                        playerList[a].resetLast();
+                    }
+                    for (int w = 0; w < playerList.length; w++) {
+                        if (Player.minBet == playerList[w].getLastBet()) {
+                            break;
+                        }
+
+                        System.out
+                                .println(playerList[w].getName() + ", are you ready to see your cards (press any key)");
+                        sc.nextLine();
+                        System.out.println(playerList[w].getName() + " your hand is: " + playerList[w].showHand());
+                        playerList[w].playerBet();
+                        System.out.print("press any key to clear");
+                        sc.nextLine();
+                        clearScreen();
+                        if (!playerList[w].getIsInHand()) {
+                            numOfPlayersIn--;
+
+                        }
+
+                    }
+
+                    Player.dealRiver();
+                    System.out.println("press enter to continue");
+                    sc.nextLine();
+                    Player.minBet = -1000;
+                    for (int a = 0; a < playerList.length; a++) {
+                        playerList[a].resetLast();
+                    }
+                    for (int w = 0; w < playerList.length; w++) {
+                        if (Player.minBet == playerList[w].getLastBet()) {
+                            break;
+                        }
+
+                        System.out
+                                .println(playerList[w].getName() + ", are you ready to see your cards (press any key)");
+                        sc.nextLine();
+                        System.out.println(playerList[w].getName() + " your hand is: " + playerList[w].showHand());
+                        playerList[w].playerBet();
+                        System.out.print("press any key to clear");
+                        sc.nextLine();
+                        clearScreen();
+                        if (!playerList[w].getIsInHand()) {
+                            numOfPlayersIn--;
+
+                        }
+
+                    }
+
+                    for (int i = 0; i < playerList.length; i++) {
+
+                        System.out.println(playerList[i].getName() + "'s hand is " + playerList[i].showHand());
+
+                    }
+
+                    System.out.println(Player.getDemCards());
+                    System.out.println("Who won?");
+                    String winner = sc.nextLine();
+                    while (Game.pot != 0) {
+                        for (int i = 0; i < playerList.length; i++) {
+
+                            if (winner.equals(playerList[i].getName())) {
+
+                                playerList[i].collectPot();
+                                Game.pot = 0;
+                            }
+                        }
+                        if(Game.pot != 0){
+                            System.out.println("Enter their Name please (as entered before)");
+                            winner = sc.nextLine();
+                        }
+                    }
                 }
 
             }
 
         }
+
     }
+
 }
